@@ -13,7 +13,7 @@
 #define NOMINMAX
 #define WIN32_LEAN_AND_MEAN
 #include "Windows.h"
-
+#include <string>
 #include "../script/bindings/binding_types.h"
 
 extern std::list<std::function<std::string(std::string)>>
@@ -22,7 +22,7 @@ extern std::list<std::function<std::string(std::string)>>
 namespace chromatic {
 struct BlinkHTMLData {
   const std::span<char> &data;
-  std::optional<std::vector<char>> replacement;
+  std::optional<std::string> replacement;
 };
 
 struct BlinkUtilSpan {
@@ -124,7 +124,7 @@ void blink_parse_html_manipulator::install() {
             "BlinkParseHTMLManipulator: HTML content modified, new size: {}",
             res.value().size());
         html_data.replacement =
-            std::vector<char>(res.value().begin(), res.value().end());
+            std::string(res.value().begin(), res.value().end());
       }
 
       auto ret = html_data.replacement.has_value()
@@ -155,7 +155,7 @@ void blink_parse_html_manipulator::install() {
             DEBUG,
             "BlinkParseHTMLManipulator: HTML content modified, new size: {}",
             res.size());
-        html_data.replacement = std::vector<char>(res.begin(), res.end());
+        html_data.replacement = std::string(res.begin(), res.end());
       }
 
       auto blink_span =
