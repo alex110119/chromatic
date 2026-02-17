@@ -18,9 +18,9 @@
 #include "ylt/easylog.hpp"
 #include "ylt/struct_pack.hpp"
 
-#define WIN32_LEAN_AND_MEAN
+#ifndef NOMINMAX
 #define NOMINMAX
-#include "Windows.h"
+#endif
 
 namespace chromatic {
 constexpr static bool use_struct_pack = false;
