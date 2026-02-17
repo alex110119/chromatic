@@ -123,7 +123,7 @@ TEST(IPCTest, Serialization) {
   ASSERT_TRUE(deserialized.has_value());
   EXPECT_EQ(deserialized->a, 42);
   EXPECT_FLOAT_EQ(deserialized->b, 3.14f);
-  auto vec = std::vector<char>{'x', 'y', 'z'};
+auto vec = std::string("xyz");
   EXPECT_EQ(deserialized->c, vec);
 }
 
